@@ -4,8 +4,8 @@ import javax.swing.JOptionPane;
 
 public class frm_fincas extends javax.swing.JFrame {
     LinkedList<cls_fincas> obj_Fincas = new LinkedList<cls_fincas>();
-    int int_posicion;
-    boolean bln_sw;
+    int int_posicion = 0;
+    boolean bln_sw = false;
     /**
      * Creates new form frm_fincas
      */
@@ -130,6 +130,11 @@ public class frm_fincas extends javax.swing.JFrame {
         });
 
         btn_consultar.setText("Consultar");
+        btn_consultar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_consultarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -241,6 +246,29 @@ public class frm_fincas extends javax.swing.JFrame {
         fnt_guardar(txt_nombre.getText(),txt_codigo.getText(),txt_direccion.getText(),
                 txt_contacto.getText(),txt_propietario.getText());
     }//GEN-LAST:event_btn_guardarActionPerformed
+    private void fnt_consultar(String codigo){
+        int_posicion = 0;
+        bln_sw = false;
+        for (int i = 0; i < obj_Fincas.size(); i++){
+            if(codigo.equals(obj_Fincas.get(i).getCodigo())){
+                int_posicion = i;
+                bln_sw = true;
+                break;
+            }
+        }
+        if(bln_sw == false){
+            JOptionPane.showMessageDialog(null,"No se encontraron "+
+                    "registros","Consultar",JOptionPane.ERROR_MESSAGE);
+        }else{
+            txt_nombre.setText(obj_Fincas.get(int_posicion).getNombre());
+            txt_contacto.setText(obj_Fincas.get(int_posicion).getContacto());
+            txt_direccion.setText(obj_Fincas.get(int_posicion).getDireccion());
+            txt_propietario.setText(obj_Fincas.get(int_posicion).getPropietario());
+        }
+    }
+    private void btn_consultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_consultarActionPerformed
+        fnt_consultar(txt_codigo.getText());
+    }//GEN-LAST:event_btn_consultarActionPerformed
 
     /**
      * @param args the command line arguments
