@@ -4,8 +4,8 @@ import javax.swing.JOptionPane;
 
 public class frm_fincas extends javax.swing.JFrame {
     LinkedList<cls_fincas> obj_Fincas = new LinkedList<cls_fincas>();
-    int int_posicion = 0;
-    boolean bln_sw = false;
+    int int_posicion;
+    boolean bln_sw;
     /**
      * Creates new form frm_fincas
      */
