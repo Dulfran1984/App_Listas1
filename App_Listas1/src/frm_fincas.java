@@ -1,14 +1,11 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 
-/**
- *
- * @author POLI
- */
+import java.util.LinkedList;
+import javax.swing.JOptionPane;
+
 public class frm_fincas extends javax.swing.JFrame {
-
+    LinkedList<cls_fincas> obj_Fincas = new LinkedList<cls_fincas>();
+    int int_posicion;
+    boolean bln_sw;
     /**
      * Creates new form frm_fincas
      */
@@ -126,6 +123,11 @@ public class frm_fincas extends javax.swing.JFrame {
         });
 
         btn_guardar.setText("Guardar");
+        btn_guardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_guardarActionPerformed(evt);
+            }
+        });
 
         btn_consultar.setText("Consultar");
 
@@ -224,6 +226,21 @@ public class frm_fincas extends javax.swing.JFrame {
     private void btn_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancelarActionPerformed
         fnt_limpiar();
     }//GEN-LAST:event_btn_cancelarActionPerformed
+    private void fnt_guardar(String n, String c, String d, String co, String p){
+        if(n.equals("") || c.equals("") || d.equals("")
+           || co.equals("") || p.equals("")){
+            JOptionPane.showMessageDialog(null,"Debe ingresar "+
+                    "todos los datos","Registrar",JOptionPane.ERROR_MESSAGE);
+        }else{
+            obj_Fincas.add(new cls_fincas(n,c,d,co,p));
+            JOptionPane.showMessageDialog(null, "Finca registrada "+
+                    "con éxito","Registrar",JOptionPane.INFORMATION_MESSAGE);
+        }
+    }
+    private void btn_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_guardarActionPerformed
+        fnt_guardar(txt_nombre.getText(),txt_codigo.getText(),txt_direccion.getText(),
+                txt_contacto.getText(),txt_propietario.getText());
+    }//GEN-LAST:event_btn_guardarActionPerformed
 
     /**
      * @param args the command line arguments
